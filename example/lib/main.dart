@@ -39,7 +39,7 @@ class _MyAppState extends State<MyApp> {
             cvv: _cvc,
             expiryMonth: _expMonth,
             expiryYear: _expYear,
-            publicKey: "ydasd");
+            publicKey: "key_F17EsLZsqtQ6VdrqeQnhxZA");
       } catch (e) {
         print(e.toString());
         token = "Unable to tokenize card";
