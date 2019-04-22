@@ -1,4 +1,4 @@
-# conekta
+# flutter_conekta
 
 A new flutter plugin project.
 

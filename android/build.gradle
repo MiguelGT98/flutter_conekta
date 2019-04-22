@@ -1,11 +1,10 @@
-group 'xyz.gallardo.conekta'
+group 'com.example.flutter_conekta'
 version '1.0-SNAPSHOT'
 
 buildscript {
     repositories {
         google()
         jcenter()
-        mavenCentral()
     }
 
     dependencies {
@@ -32,8 +31,8 @@ android {
     lintOptions {
         disable 'InvalidPackage'
     }
-}
 
-dependencies {
-    api 'io.conekta:conektasdk:2.1'
+    dependencies {
+        api 'io.conekta:conektasdk:2.0'
+    }
 }

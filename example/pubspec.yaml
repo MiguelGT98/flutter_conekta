@@ -1,5 +1,5 @@
-name: conekta_example
-description: Demonstrates how to use the conekta plugin.
+name: flutter_conekta_example
+description: Demonstrates how to use the flutter_conekta plugin.
 publish_to: 'none'
 
 environment:
@@ -17,7 +17,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  conekta:
+  flutter_conekta:
     path: ../
 
 # For information on the generic Dart part of this file, see the

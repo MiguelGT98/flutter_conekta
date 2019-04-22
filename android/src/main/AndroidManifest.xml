@@ -1,6 +1,6 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="xyz.gallardo.conekta" 
-  xmlns:tools="http://schemas.android.com/tools">
-  <application tools:node="replace" android:usesCleartextTraffic="true">
-    <uses-library android:name="org.apache.http.legacy" android:required="false" />
-  </application>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+  package="com.example.flutter_conekta" xmlns:tools="http://schemas.android.com/tools">
+    <application tools:node="replace" android:usesCleartextTraffic="true">
+        <uses-library android:name="org.apache.http.legacy" android:required="false" />
+    </application>
 </manifest>

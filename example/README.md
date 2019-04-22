@@ -1,6 +1,6 @@
-# conekta_example
+# flutter_conekta_example
 
-Demonstrates how to use the conekta plugin.
+Demonstrates how to use the flutter_conekta plugin.
 
 ## Getting Started
 

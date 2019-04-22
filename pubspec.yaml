@@ -1,8 +1,10 @@
-name: conekta
-description: A new flutter plugin project.
-version: 0.0.1
-author:
-homepage:
+name: flutter_conekta
+description: Flutter plugin for Conekta, enabling Android and iOS card tokenization.
+version: 1.0.0
+authors:
+  - Alfredo Quintero <alfredoq98@hotmail.com>
+  - Miguel Gallardo <miguel@gallardo.xyz>
+homepage: https://github.com/MiguelGT98/flutter_conekta
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
@@ -25,9 +27,8 @@ flutter:
   # be modified. They are used by the tooling to maintain consistency when
   # adding or updating assets for this project.
   plugin:
-    androidPackage: xyz.gallardo.conekta
-    pluginClass: ConektaPlugin
-
+    androidPackage: com.example.flutter_conekta
+    pluginClass: FlutterConektaPlugin
   # To add assets to your plugin package, add an assets section, like this:
   # assets:
   #  - images/a_dot_burr.jpeg
@@ -38,7 +39,6 @@ flutter:
   #
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.io/assets-and-images/#resolution-aware.
-
   # To add custom fonts to your plugin package, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a
   # "family" key with the font family name, and a "fonts" key with a
