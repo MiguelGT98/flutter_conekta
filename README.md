@@ -24,7 +24,7 @@ before `<application>` to your app's `AndroidManifest.xml` file. This is require
 
 ### iOS
 
-Based on the location of the files that you are willing to pick paths, you may need to add some keys to your iOS app's _Info.plist_ file, located in `<project root>/ios/Runner/Info.plist`:
+For tokenizing the card information correctly, you need to add some keys to your iOS app's _Info.plist_ file, located in `<project root>/ios/Runner/Info.plist`:
 
 - **_UIBackgroundModes_** with the **_fetch_** and **_remote-notifications_** keys - Required. Describe why your app needs to access background taks, suck talking to an external API (to tokenize the card). This is called _Required background modes_, with the keys _App download content from network_ and _App downloads content in response to push notifications_ respectively in the visual editor (since both methods aren't actually overriden, not adding this property/keys may only display a warning, but shouldn't prevent its correct usage).
 
@@ -60,7 +60,7 @@ Will let you tokenize a card. This receives six required parameters: the `public
 
 ## Demo App
 
-![Demo](https://github.com/MiguelGT98/flutter_conekta/tree/master/example/example.png)
+![Demo](https://github.com/MiguelGT98/flutter_conekta/blob/master/example/example.png)
 
 ## Example
 
