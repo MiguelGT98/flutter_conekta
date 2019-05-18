@@ -1,4 +1,6 @@
 ## 1.0.2
+- Added MIT license
+## 1.0.2
 - Fixed version typo in README file
 
 ## 1.0.1
