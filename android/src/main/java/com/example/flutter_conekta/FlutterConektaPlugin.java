@@ -1,6 +1,7 @@
 package com.example.flutter_conekta;
 
 import android.app.Activity;
+import android.util.Log;
 
 import org.json.JSONObject;
 
@@ -18,6 +19,7 @@ import io.flutter.plugin.common.PluginRegistry.Registrar;
 /** FlutterConektaPlugin */
 public class FlutterConektaPlugin implements MethodCallHandler {
 
+  private static final String TAG = "FlutterConektaPlugin";
   private final Activity activity;
 
   /** Plugin registration. */
@@ -61,6 +63,7 @@ public class FlutterConektaPlugin implements MethodCallHandler {
         try {
           result.success(data.getString("id"));
         } catch (Exception err) {
+          Log.d(TAG, data.toString());
           result.error("ERROR_UNABLE_TO_TOKENIZE", err.getMessage(), null);
         }
       }
