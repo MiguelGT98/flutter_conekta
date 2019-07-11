@@ -8,7 +8,7 @@ buildscript {
     }
 
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.3.0'
+        classpath 'com.android.tools.build:gradle:3.3.1'
     }
 }
 
@@ -33,6 +33,6 @@ android {
     }
 
     dependencies {
-        api 'io.conekta:conektasdk:2.0'
+        api 'com.android.volley:volley:1.1.1'
     }
 }

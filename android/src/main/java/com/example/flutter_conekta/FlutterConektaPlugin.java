@@ -51,7 +51,6 @@ public class FlutterConektaPlugin implements MethodCallHandler {
     String expiryYear = arguments.get("expiryYear");
 
     Conekta.setPublicKey(publicKey);
-    Conekta.collectDevice(this.activity);
 
     Card card = new Card(cardholderName, cardNumber, cvv, expiryMonth, expiryYear);
 
