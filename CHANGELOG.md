@@ -1,5 +1,9 @@
+## 1.0.4
+- Migration to AndroidX
+
 ## 1.0.3
 - Added MIT license
+
 ## 1.0.2
 - Fixed version typo in README file
 
@@ -7,7 +11,6 @@
 - Updates README file
 
 ## 1.0.0
-
 - **Version 1.0** release.
 - Initial relase.
 - Allows tokenization of cards, always specifying the public key.
