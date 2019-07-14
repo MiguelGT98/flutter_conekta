@@ -36,7 +36,7 @@ public class Connection {
         this.listener = listener;
     }
 
-    public void request(Context context, final Map<String, String> cardDetaiks, String endPoint) {
+    public void request(Context context, final Map<String, String> cardDetails, String endPoint) {
 
         this.endPoint = endPoint;
         String url = Conekta.getBaseUri() + endPoint;
@@ -58,21 +58,21 @@ public class Connection {
         ) {
             @Override
             public byte[] getBody() {
-                String body = "{\"card\":{"
-                        +"\"number\":"
-                        + cardDetaiks.get("number") + ","
-                        +"\"name\":"
-                        + cardDetaiks.get("name") + ","
-                        +"\"cvc\":"
-                        + cardDetaiks.get("cvc") + ","
-                        +"\"exp_month\":"
-                        + cardDetaiks.get("exp_month") + ","
-                        +"\"exp_year\":"
-                        + cardDetaiks.get("exp_year") + ","
-                        +"\"device_fingerprint\":"
-                        + cardDetaiks.get("device_fingerprint")
-                        + "}}";
-                return body.getBytes();
+                try {
+                    JSONObject cardJson = new JSONObject();
+                    cardJson.put("number", cardDetails.get("number"));
+                    cardJson.put("name", cardDetails.get("name"));
+                    cardJson.put("cvc", cardDetails.get("cvc"));
+                    cardJson.put("exp_month", cardDetails.get("exp_month"));
+                    cardJson.put("exp_year", cardDetails.get("exp_year"));
+                    cardJson.put("device_fingerprint", cardDetails.get("device_fingerprint"));
+                    JSONObject bodyJson = new JSONObject();
+                    bodyJson.put("card", cardJson);
+                    return bodyJson.toString().getBytes("utf-8");
+                } catch (Exception e) {
+                    return null;
+                }
+
             }
 
             @Override

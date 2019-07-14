@@ -34,12 +34,13 @@ class _MyAppState extends State<MyApp> {
 
       try {
         token = await FlutterConekta.tokenizeCard(
-            cardholderName: _name,
-            cardNumber: _number,
-            cvv: _cvc,
-            expiryMonth: _expMonth,
-            expiryYear: _expYear,
-            publicKey: "your_key");
+          cardholderName: _name,
+          cardNumber: _number,
+          cvv: _cvc,
+          expiryMonth: _expMonth,
+          expiryYear: _expYear,
+          publicKey: "key_JyHGkzGk9jqwZHPzFADa7FQ",
+        );
       } catch (e) {
         print(e.toString());
         token = "Unable to tokenize card";
@@ -54,106 +55,115 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: ThemeData(),
-        title: "Conekta Tokenization Example",
-        home: Scaffold(
-            appBar: AppBar(
-              title: Text("Conekta Tokenization Example"),
+      theme: ThemeData(),
+      title: "Conekta Tokenization Example",
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Conekta Tokenization Example"),
+        ),
+        body: Container(
+          padding: EdgeInsets.all(20),
+          child: new Form(
+            key: _formKey,
+            child: new ListView(
+              children: <Widget>[
+                SizedBox(height: 20),
+                cardNameField(),
+                SizedBox(height: 20),
+                cardNumberField(),
+                cardValidationRow(),
+                tokenizeCardButton(),
+                SizedBox(height: 20),
+                Text("Token: $_token")
+              ],
             ),
-            body: Container(
-                padding: EdgeInsets.all(20),
-                child: new Form(
-                    key: _formKey,
-                    child: new ListView(
-                      children: <Widget>[
-                        SizedBox(height: 20),
-                        cardNameField(),
-                        SizedBox(height: 20),
-                        cardNumberField(),
-                        cardValidationRow(),
-                        tokenizeCardButton(),
-                        SizedBox(height: 20),
-                        Text("Token: $_token")
-                      ],
-                    )))));
+          ),
+        ),
+      ),
+    );
   }
 
   Widget cardNameField() {
     return Container(
-        child: TextFormField(
-      autofocus: true,
-      keyboardType: TextInputType.text,
-      enabled: true,
-      decoration: InputDecoration(
-          labelText: "Nombre del titular", border: OutlineInputBorder()),
-      onSaved: (String value) {
-        _name = value;
-      },
-      validator: validateCardNameField,
-    ));
+      child: TextFormField(
+        autofocus: true,
+        keyboardType: TextInputType.text,
+        enabled: true,
+        decoration: InputDecoration(
+            labelText: "Nombre del titular", border: OutlineInputBorder()),
+        onSaved: (String value) {
+          _name = value;
+        },
+        validator: validateCardNameField,
+      ),
+    );
   }
 
   Widget cardNumberField() {
     return Container(
-        child: TextFormField(
-      keyboardType: TextInputType.number,
-      maxLength: 16,
-      enabled: true,
-      decoration: InputDecoration(
-          labelText: "Número de tarjeta", border: OutlineInputBorder()),
-      onSaved: (String value) {
-        _number = value;
-      },
-      validator: validateCardNumberField,
-    ));
+      child: TextFormField(
+        keyboardType: TextInputType.number,
+        maxLength: 16,
+        enabled: true,
+        decoration: InputDecoration(
+            labelText: "Número de tarjeta", border: OutlineInputBorder()),
+        onSaved: (String value) {
+          _number = value;
+        },
+        validator: validateCardNumberField,
+      ),
+    );
   }
 
   Widget cardExpirationMonthField() {
     return Expanded(
-        flex: 2,
-        child: TextFormField(
-          maxLength: 2,
-          keyboardType: TextInputType.number,
-          enabled: true,
-          decoration:
-              InputDecoration(labelText: "MM", border: OutlineInputBorder()),
-          onSaved: (String value) {
-            _expMonth = value;
-          },
-          validator: validateExpMonthField,
-        ));
+      flex: 2,
+      child: TextFormField(
+        maxLength: 2,
+        keyboardType: TextInputType.number,
+        enabled: true,
+        decoration:
+            InputDecoration(labelText: "MM", border: OutlineInputBorder()),
+        onSaved: (String value) {
+          _expMonth = value;
+        },
+        validator: validateExpMonthField,
+      ),
+    );
   }
 
   Widget cardExpirationYearField() {
     return Expanded(
-        flex: 4,
-        child: TextFormField(
-          maxLength: 4,
-          keyboardType: TextInputType.number,
-          enabled: true,
-          decoration:
-              InputDecoration(labelText: "YYYY", border: OutlineInputBorder()),
-          onSaved: (String value) {
-            _expYear = value;
-          },
-          validator: validateExpYearField,
-        ));
+      flex: 4,
+      child: TextFormField(
+        maxLength: 4,
+        keyboardType: TextInputType.number,
+        enabled: true,
+        decoration:
+            InputDecoration(labelText: "YYYY", border: OutlineInputBorder()),
+        onSaved: (String value) {
+          _expYear = value;
+        },
+        validator: validateExpYearField,
+      ),
+    );
   }
 
   Widget cardBackNumberField() {
     return Expanded(
-        flex: 3,
-        child: TextFormField(
-          maxLength: 3,
-          keyboardType: TextInputType.number,
-          enabled: true,
-          decoration:
-              InputDecoration(labelText: "CVC", border: OutlineInputBorder()),
-          onSaved: (String value) {
-            _cvc = value;
-          },
-          validator: validateBackNumberField,
-        ));
+      flex: 3,
+      child: TextFormField(
+        maxLength: 3,
+        keyboardType: TextInputType.number,
+        enabled: true,
+        decoration:
+            InputDecoration(labelText: "CVC", border: OutlineInputBorder()),
+        onSaved: (String value) {
+          _cvc = value;
+        },
+        validator: validateBackNumberField,
+      ),
+    );
   }
 
   Widget cardValidationRow() {
@@ -191,12 +201,14 @@ class _MyAppState extends State<MyApp> {
     if (!(value.contains(new RegExp("^[^0-9]+\$")))) {
       return "El nombre no puede incluír números";
     }
+    return null;
   }
 
   String validateCardNumberField(String value) {
     if (value.length != 16) {
       return "Se necesitan los 16 números";
     }
+    return null;
   }
 
   String validateExpMonthField(String value) {
@@ -209,6 +221,7 @@ class _MyAppState extends State<MyApp> {
     }
 
     //Validar de acuerdo a la fecha que resulta de mes y año
+    return null;
   }
 
   String validateExpYearField(String value) {
@@ -217,11 +230,13 @@ class _MyAppState extends State<MyApp> {
     }
 
     //Validar de acuerdo a la fecha que resulta de mes y año
+    return null;
   }
 
   String validateBackNumberField(String value) {
     if (value.length != 3) {
       return "Se necesitan los tres números detrás de tu tarjeta";
     }
+    return null;
   }
 }

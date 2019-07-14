@@ -1,3 +1,7 @@
+## 1.0.5
+- Use Volley to make request to tokenize cards in Android module
+- Migrated Android example to AndroidX
+
 ## 1.0.4
 - Migration to AndroidX
 
