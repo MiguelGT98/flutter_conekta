@@ -1,6 +1,6 @@
-import 'package:flutter/material.dart';
 import 'dart:async';
 
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_conekta/flutter_conekta.dart';
 
@@ -26,6 +26,52 @@ class _MyAppState extends State<MyApp> {
     super.initState();
   }
 
+  String validateCardNameField(String value) {
+    if (value.length == 0) {
+      return "Por favor escribe el nombre";
+    }
+    if (!(value.contains(new RegExp("^[^0-9]+\$")))) {
+      return "El nombre no puede incluír números";
+    }
+    return null;
+  }
+
+  String validateCardNumberField(String value) {
+    if (value.length != 16) {
+      return "Se necesitan los 16 números";
+    }
+    return null;
+  }
+
+  String validateExpMonthField(String value) {
+    if (value.length != 2) {
+      return "Escribe el més en el formato MM";
+    }
+
+    if (int.tryParse(value) < 1 || int.tryParse(value) > 12) {
+      return "$value no es un mes válido";
+    }
+
+    //Validar de acuerdo a la fecha que resulta de mes y año
+    return null;
+  }
+
+  String validateExpYearField(String value) {
+    if (value.length != 4) {
+      return "Escribe el año en el formato YYYY";
+    }
+
+    //Validar de acuerdo a la fecha que resulta de mes y año
+    return null;
+  }
+
+  String validateBackNumberField(String value) {
+    if (value.length != 3) {
+      return "Se necesitan los tres números detrás de tu tarjeta";
+    }
+    return null;
+  }
+
   Future<void> submit() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
@@ -39,7 +85,7 @@ class _MyAppState extends State<MyApp> {
           cvv: _cvc,
           expiryMonth: _expMonth,
           expiryYear: _expYear,
-          publicKey: "key_JyHGkzGk9jqwZHPzFADa7FQ",
+          publicKey: 'your_key',
         );
       } catch (e) {
         print(e.toString());
@@ -50,37 +96,6 @@ class _MyAppState extends State<MyApp> {
         _token = token;
       });
     }
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(),
-      title: "Conekta Tokenization Example",
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text("Conekta Tokenization Example"),
-        ),
-        body: Container(
-          padding: EdgeInsets.all(20),
-          child: new Form(
-            key: _formKey,
-            child: new ListView(
-              children: <Widget>[
-                SizedBox(height: 20),
-                cardNameField(),
-                SizedBox(height: 20),
-                cardNumberField(),
-                cardValidationRow(),
-                tokenizeCardButton(),
-                SizedBox(height: 20),
-                Text("Token: $_token")
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
   }
 
   Widget cardNameField() {
@@ -194,49 +209,34 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  String validateCardNameField(String value) {
-    if (value.length == 0) {
-      return "Por favor escribe el nombre";
-    }
-    if (!(value.contains(new RegExp("^[^0-9]+\$")))) {
-      return "El nombre no puede incluír números";
-    }
-    return null;
-  }
-
-  String validateCardNumberField(String value) {
-    if (value.length != 16) {
-      return "Se necesitan los 16 números";
-    }
-    return null;
-  }
-
-  String validateExpMonthField(String value) {
-    if (value.length != 2) {
-      return "Escribe el més en el formato MM";
-    }
-
-    if (int.tryParse(value) < 1 || int.tryParse(value) > 12) {
-      return "$value no es un mes válido";
-    }
-
-    //Validar de acuerdo a la fecha que resulta de mes y año
-    return null;
-  }
-
-  String validateExpYearField(String value) {
-    if (value.length != 4) {
-      return "Escribe el año en el formato YYYY";
-    }
-
-    //Validar de acuerdo a la fecha que resulta de mes y año
-    return null;
-  }
-
-  String validateBackNumberField(String value) {
-    if (value.length != 3) {
-      return "Se necesitan los tres números detrás de tu tarjeta";
-    }
-    return null;
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData(),
+      title: "Conekta Tokenization Example",
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text("Conekta Tokenization Example"),
+        ),
+        body: Container(
+          padding: EdgeInsets.all(20),
+          child: new Form(
+            key: _formKey,
+            child: new ListView(
+              children: <Widget>[
+                SizedBox(height: 20),
+                cardNameField(),
+                SizedBox(height: 20),
+                cardNumberField(),
+                cardValidationRow(),
+                tokenizeCardButton(),
+                SizedBox(height: 20),
+                Text("Token: $_token")
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
   }
 }
